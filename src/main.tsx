@@ -5,7 +5,7 @@ import Layout from './layouts/Layout'
 import Products from './pages/Products'
 import "@fontsource-variable/onest";
 import './index.css'
-import RegisterProduct from './pages/RegisterProduct'
+import RegisterProduct, { action as actionRegisterProduct } from './pages/RegisterProduct'
 
 const router = createBrowserRouter([
   {
@@ -18,7 +18,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/nuevo-producto',
-        element: <RegisterProduct />
+        element: <RegisterProduct />,
+        action: actionRegisterProduct
       }
     ]
   }
