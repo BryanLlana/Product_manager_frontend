@@ -1,6 +1,6 @@
 import { productApi } from "../api/productApi"
 import { Inputs } from "../pages/RegisterProduct"
-import { Product } from '../../types/index';
+import { Product } from '../types/index';
 
 export const createProduct = async (inputs: Inputs) => {
   try {
