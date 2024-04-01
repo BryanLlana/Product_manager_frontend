@@ -4,3 +4,9 @@ export type Product = {
   price: number,
   availability: boolean
 }
+
+export type ProductEdit = {
+  name: string, 
+  price: string,
+  availability: string
+}

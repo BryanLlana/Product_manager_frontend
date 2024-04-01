@@ -1,4 +1,4 @@
-import { Product } from '../types';
+import { ProductEdit, Product } from '../types';
 import { api } from '../lib/axios';
 import { Inputs } from '../pages/RegisterProduct';
 
@@ -11,5 +11,8 @@ export const productApi = {
   },
   getProduct: async (id: number) => {
     return await api.get<Product>(`/products/${id}`)
+  },
+  updateProduct: async (id: number, data: ProductEdit) => {
+    return await api.put(`/products/${id}`, data)
   }
 }

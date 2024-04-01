@@ -1,7 +1,7 @@
 import { Link, Form, ActionFunction, useActionData, redirect, LoaderFunction, useLoaderData } from 'react-router-dom';
 import Error from '../components/Error';
-import { createProduct, getProduct } from '../services/product.service';
-import { Product } from '../types';
+import { getProduct, updateProduct } from '../services/product.service';
+import { Product, ProductEdit } from '../types';
 
 export type Inputs = {
   name: string,
@@ -16,15 +16,15 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
 }
 
-export const action: ActionFunction = async ({ request }) => {
-  const inputs = Object.fromEntries(await request.formData()) as Inputs
+export const action: ActionFunction = async ({ params, request }) => {
+  const inputs = Object.fromEntries(await request.formData()) as ProductEdit
   const errors: { [key: string]: any } = {}
 
   if (!inputs.name) errors.name = 'El nombre es obligatorio'
   if (!Number(inputs.price)) errors.price = 'El precio es obligatorio'
   if (Object.values(errors).length > 0) return errors
 
-  await createProduct(inputs)
+  await updateProduct(Number(params.id), inputs)
   return redirect('/')
 }
 
