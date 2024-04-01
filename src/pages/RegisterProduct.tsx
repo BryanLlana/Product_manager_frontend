@@ -1,26 +1,26 @@
-import { Link, Form, ActionFunction, useActionData } from 'react-router-dom';
+import { Link, Form, ActionFunction, useActionData, redirect } from 'react-router-dom';
 import Error from '../components/Error';
+import { createProduct } from '../services/product.service';
 
-type Inputs = {
+export type Inputs = {
   name: string,
   price: string
 }
 
 export const action: ActionFunction = async ({ request }) => {
   const inputs = Object.fromEntries(await request.formData()) as Inputs
-  const errors: {[key: string]: any} = {}
+  const errors: { [key: string]: any } = {}
 
   if (!inputs.name) errors.name = 'El nombre es obligatorio'
   if (!Number(inputs.price)) errors.price = 'El precio es obligatorio'
   if (Object.values(errors).length > 0) return errors 
 
-  
-  
-  return {}
+  await createProduct(inputs)
+  return redirect('/')
 }
 
 const RegisterProduct = () => {
-  const errors = useActionData()
+  const errors = useActionData() as { name: string, price: string }
 
   return (
     <>
