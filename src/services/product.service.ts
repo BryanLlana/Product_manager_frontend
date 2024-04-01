@@ -35,3 +35,11 @@ export const updateProduct = async (id: number, data: ProductEdit) => {
     console.log(error)
   }
 }
+
+export const deleteProduct = async (id: number) => {
+  try {
+    await productApi.deleteProduct(id)
+  } catch (error) {
+    console.log(error)
+  }
+}

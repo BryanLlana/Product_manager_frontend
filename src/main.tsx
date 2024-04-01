@@ -5,6 +5,7 @@ import Layout from './layouts/Layout'
 import Products, { loader as loaderProducts } from './pages/Products'
 import RegisterProduct, { action as actionRegisterProduct } from './pages/RegisterProduct'
 import EditProduct, { action as actionEditProduct, loader as loaderEditProduct } from './pages/EditProduct'
+import { action as actionDeleteProduct } from './components/ProductDetails'
 import "@fontsource-variable/onest";
 import './index.css'
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         element: <EditProduct />,
         loader: loaderEditProduct,
         action: actionEditProduct
+      },
+      {
+        path: '/eliminar-producto/:id',
+        action: actionDeleteProduct
       }
     ]
   }

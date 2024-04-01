@@ -1,8 +1,14 @@
-import { useNavigate } from "react-router-dom"
+import { ActionFunction, Form, redirect, useNavigate } from "react-router-dom"
 import { Product } from "../types"
+import { deleteProduct } from "../services/product.service"
 
 type Props = {
   product: Product
+}
+
+export const action: ActionFunction = async ({ params }) => {
+  await deleteProduct(+params.id!)
+  return redirect('/')
 }
 
 const ProductDetails = ({ product }: Props) => {
@@ -25,9 +31,22 @@ const ProductDetails = ({ product }: Props) => {
             className="bg-indigo-600 text-white rounded-lg w-full p-2 uppercase font-bold text-xs text-center"
             onClick={() => navigate(`/editar-producto/${id}`)}
           >Editar</button>
-          <button
-            className="bg-red-600 text-white rounded-lg w-full p-2 uppercase font-bold text-xs text-center"
-          >Eliminar</button>
+          <Form
+            className="w-full" 
+            method="post" 
+            action={`/eliminar-producto/${id}`}
+            onSubmit={e => {
+              if (!confirm('¿Estás seguro de eliminar un producto?')) {
+                e.preventDefault()
+              }
+            }}
+          >
+            <input
+              type="submit"
+              value='Eliminar'
+              className="bg-red-600 text-white rounded-lg w-full p-2 uppercase font-bold text-xs text-center"
+            />
+          </Form>
         </div>
       </td>
     </tr>
