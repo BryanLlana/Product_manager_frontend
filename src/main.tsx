@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './layouts/Layout'
 import Products, { loader as loaderProducts } from './pages/Products'
+import RegisterProduct, { action as actionRegisterProduct } from './pages/RegisterProduct'
+import EditProduct, { loader as loaderEditProduct } from './pages/EditProduct'
 import "@fontsource-variable/onest";
 import './index.css'
-import RegisterProduct, { action as actionRegisterProduct } from './pages/RegisterProduct'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
         path: '/nuevo-producto',
         element: <RegisterProduct />,
         action: actionRegisterProduct
+      },
+      {
+        path: '/editar-producto/:id',
+        element: <EditProduct />,
+        loader: loaderEditProduct
       }
     ]
   }

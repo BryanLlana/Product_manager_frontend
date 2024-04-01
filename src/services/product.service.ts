@@ -18,3 +18,12 @@ export const getProducts = async (): Promise<Product[] | undefined> => {
     console.log(error)
   }
 }
+
+export const getProduct = async (id: number): Promise<Product | undefined> => {
+  try {
+    const { data } = await productApi.getProduct(id)
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}

@@ -8,5 +8,8 @@ export const productApi = {
   },
   getProducts: async () => {
     return await api.get<Product[]>('/products')
+  },
+  getProduct: async (id: number) => {
+    return await api.get<Product>(`/products/${id}`)
   }
 }
