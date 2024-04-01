@@ -43,3 +43,11 @@ export const deleteProduct = async (id: number) => {
     console.log(error)
   }
 }
+
+export const updateAvailability = async (id: number) => {
+  try {
+    await productApi.updateAvailability(id)
+  } catch (error) {
+    console.log(error)
+  }
+}

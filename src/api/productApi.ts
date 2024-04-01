@@ -17,5 +17,8 @@ export const productApi = {
   },
   deleteProduct: async (id: number) => {
     return await api.delete(`/products/${id}`)
+  },
+  updateAvailability: async (id: number) => {
+    return await api.patch(`/products/${id}`)
   }
 }
