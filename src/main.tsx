@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './layouts/Layout'
-import Products from './pages/Products'
+import Products, { loader as loaderProducts } from './pages/Products'
 import "@fontsource-variable/onest";
 import './index.css'
 import RegisterProduct, { action as actionRegisterProduct } from './pages/RegisterProduct'
@@ -14,7 +14,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Products />
+        element: <Products />,
+        loader: loaderProducts
       },
       {
         path: '/nuevo-producto',
